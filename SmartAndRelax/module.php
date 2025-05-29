@@ -53,24 +53,28 @@ require_once __DIR__ . '/../libs/MQTTHelper.php';
             ], 3);
 			$this->EnableAction('Air');
 
-			$this->RegisterVariableBoolean('HeatGrn', $this->Translate('Heat GRN'), [
+			$this->RegisterVariableBoolean('Heat', $this->Translate('Heat'), [
                 'PRESENTATION'    => VARIABLE_PRESENTATION_SWITCH
             ], 4);
-			$this->EnableAction('HeatGrn');
+			$this->EnableAction('Heat');
 
-			$this->RegisterVariableBoolean('HeatRed', $this->Translate('Heat Red'), [
+			$this->RegisterVariableBoolean('HeatGrn', $this->Translate('Heat GRN'), [
                 'PRESENTATION'    => VARIABLE_PRESENTATION_SWITCH
             ], 5);
 
-			$this->RegisterVariableBoolean('Pump', $this->Translate('Pump'), [
+			$this->RegisterVariableBoolean('HeatRed', $this->Translate('Heat Red'), [
                 'PRESENTATION'    => VARIABLE_PRESENTATION_SWITCH
             ], 6);
+
+			$this->RegisterVariableBoolean('Pump', $this->Translate('Pump'), [
+                'PRESENTATION'    => VARIABLE_PRESENTATION_SWITCH
+            ], 7);
 			$this->EnableAction('Pump');
 
 			$this->RegisterVariableFloat('TargetTemperature', $this->Translate('Target Temperature'), [
                     'PRESENTATION' => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
                     'SUFFIX'       => ' °C'
-            ], 7);
+            ], 8);
 			$this->EnableAction('TargetTemperature');
 
 			$this->RegisterVariableFloat('Temperature', $this->Translate('Temperature'), [
@@ -102,7 +106,7 @@ require_once __DIR__ . '/../libs/MQTTHelper.php';
 					$Payload['VALUE'] = intval($Value);
 					$this->sendMQTT($MQTTTopic.'/command', json_encode($Payload));
 					break;
-				case 'HeatGrn':
+				case 'Heat':
 					$Payload['CMD'] = 3;
 					$Payload['VALUE'] = intval($Value);
 					$this->sendMQTT($MQTTTopic.'/command', json_encode($Payload));
@@ -139,6 +143,9 @@ require_once __DIR__ . '/../libs/MQTTHelper.php';
 					$this->SetValue('Air', $Payload['AIR']);
 					$this->SetValue('HeatGrn', $Payload['GRN']);
 					$this->SetValue('HeatRed', $Payload['RED']);
+					if (($Payload['GRN'] == 1) OR ($Payload['RED'] == 1)) {
+						$this->SetValue('Heat', true);
+					}
 					$this->SetValue('Pump', $Payload['FLT']);
 					$this->SetValue('TargetTemperature', $Payload['TGT']);
 					$this->SetValue('Temperature', $Payload['TMP']);
