@@ -61,7 +61,6 @@ require_once __DIR__ . '/../libs/MQTTHelper.php';
 			$this->RegisterVariableBoolean('HeatRed', $this->Translate('Heat Red'), [
                 'PRESENTATION'    => VARIABLE_PRESENTATION_SWITCH
             ], 5);
-			$this->EnableAction('HeatRed');
 
 			$this->RegisterVariableBoolean('Pump', $this->Translate('Pump'), [
                 'PRESENTATION'    => VARIABLE_PRESENTATION_SWITCH
