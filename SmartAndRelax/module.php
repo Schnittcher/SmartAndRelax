@@ -146,6 +146,9 @@ require_once __DIR__ . '/../libs/MQTTHelper.php';
 					if (($Payload['GRN'] == 1) OR ($Payload['RED'] == 1)) {
 						$this->SetValue('Heat', true);
 					}
+					if (($Payload['GRN'] == 0) && ($Payload['RED'] == 0)) {
+						$this->SetValue('Heat', true);
+					}
 					$this->SetValue('Pump', $Payload['FLT']);
 					$this->SetValue('TargetTemperature', $Payload['TGT']);
 					$this->SetValue('Temperature', $Payload['TMP']);
