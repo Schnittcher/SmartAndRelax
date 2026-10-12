@@ -1,8 +1,24 @@
 {
     "translations": {
         "de": {
-            "Translation 1": "Übersetzung 1",
-            "Translation 2": "Übersetzung 2"
+            "Lock": "Sperre",
+            "Locked": "Gesperrt",
+            "Unlocked": "Entsperrt",
+            "Power": "Ein/Aus",
+            "Air": "Luft",
+            "Heat": "Heizung",
+            "Heating State": "Heizstatus",
+            "Off": "Aus",
+            "Target temperature reached": "Zieltemperatur erreicht",
+            "Heating": "Heizt",
+            "Waiting for pump": "Wartet auf Pumpe",
+            "Pump": "Pumpe",
+            "Target Temperature": "Zieltemperatur",
+            "Temperature": "Temperatur",
+            "Error Code": "Fehlercode",
+            "MQTT Topic": "MQTT-Topic",
+            "MQTT Topic is missing": "MQTT-Topic fehlt",
+            "Active": "Aktiv"
         }
     }
 }
